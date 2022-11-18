@@ -231,7 +231,7 @@ function setupModInfo() {
 
 }
 function fixNaNs() {
-	NaNcheck(player);
+	//NaNcheck(player);
 }
 function NaNcheck(data) {
 	for (item in data) {
