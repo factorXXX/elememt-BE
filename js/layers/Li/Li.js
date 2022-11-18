@@ -139,7 +139,7 @@ addLayer("li", {
         player.li.totalHonour = player.li.totalHonour.add(n(LiHonourGain()).mul(diff)).max(0)
         player.li.pride = player.li.pride.add(n(LiPrideGain()).mul(diff)).max(0)
 	},
-    layerShown(){return hasAchievement('a',13)},
+layerShown(){return false/*hasAchievement('a',13)*/},
 	clickables:{
         'mine_main_0':{
             title:'矿洞',
