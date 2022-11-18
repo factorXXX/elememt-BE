@@ -1,27 +1,40 @@
-let modInfo = {
-	name: "The Modding Tree",
-	id: "mymod",
-	author: "",
-	pointsName: "points",
+﻿let modInfo = {
+	name: "元素论",
+	id: "Element_Theory_Li",
+	author: "模组树元素论team",
+	pointsName: "质子",
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new ExpantaNum (10), // Used for hard resets and new players
+	initialStartPoints: new ExpantaNum (0), // Used for hard resets and new players
 	
-	offlineLimit: 1,  // In hours
+	offlineLimit: 10,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
+	num: "0.0 - 基于元素论v0.16(click)",
 	name: "",
 }
 
-let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+let changelog = `<h1>详情:</h1><br>
+	<h2>元素论v0.16</h2><br>
+		<li>基于Ω版本(By QwQe308)的The Modding Tree(By [i页面])
+		<li>修改:
+		<li>format文字修改
+		<li>点数显示机制修改
+		<li>为clickables加入了toolitip和branches
+		<li>为buyable加入了toolitip
+		<li>为gird加入了toolitip
+		<li>为layers加入了点数持续显示且修改了CSS,根据真实页面宽度改变按钮大小
+		<li>修改默认设置,更改设置UI,CSS,增加/删除了一些设置
+		<li>增加themes
+		<br><br><br><br>
+		<hr>
+		<h3>锂:</h3><br>
+		<li>荣耀里程(3)
+	`
 
-let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
+let winText = `只是开始`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -38,10 +51,11 @@ function canGenPoints(){
 
 // Calculate points/sec!
 function getPointGen() {
-	if(!canGenPoints())
-		return new ExpantaNum(0)
-
+	if(!canGenPoints()) return new ExpantaNum(0)
 	let gain = new ExpantaNum(1)
+	gain = gain.mul('1ee10')
+	gain = gain.mul(tmp.li.effect[0])
+	gain = gain.pow(tmp.li.effect[1])
 	return gain
 }
 

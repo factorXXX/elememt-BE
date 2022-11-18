@@ -7,11 +7,10 @@ function getStartOptions() {
 		autosave: true,
 		msDisplay: "always",
 		theme: null,
-		hqTree: false,
 		offlineProd: true,
 		hideChallenges: false,
 		showStory: true,
-		forceOneTab: false,
+		forceOneTab: true,
 		oldStyle: false,
 	}
 }
@@ -21,8 +20,7 @@ function toggleOpt(name) {
 		return;
 
 	options[name] = !options[name];
-	if (name == "hqTree")
-		changeTreeQuality();
+	changeTreeQuality();
 	if (name == "oldStyle")
 		updateStyle();
 }
@@ -33,13 +31,19 @@ function updateStyle() {
 	css.href = options.oldStyle ? "oldStyle.css" : "style.css";
 	needCanvasUpdate = true;
 }
+
 function changeTreeQuality() {
-	var on = options.hqTree;
-	document.body.style.setProperty('--hqProperty1', on ? "2px solid" : "4px solid");
-	document.body.style.setProperty('--hqProperty2a', on ? "-4px -4px 4px rgba(0, 0, 0, 0.25) inset" : "-4px -4px 4px rgba(0, 0, 0, 0) inset");
-	document.body.style.setProperty('--hqProperty2b', on ? "0px 0px 20px var(--background)" : "");
-	document.body.style.setProperty('--hqProperty3', on ? "2px 2px 4px rgba(0, 0, 0, 0.25)" : "none");
+	document.body.style.setProperty('--hqProperty1', "4px solid")
+	document.body.style.setProperty('--hqProperty2a', "-4px -4px 4px rgba(0, 0, 0, 0) inset")
+	document.body.style.setProperty('--hqProperty2b', "0px 0px 20px var(--background)")
+	document.body.style.setProperty('--hqProperty3', "2px 2px 4px rgba(0, 0, 0, 0.25)")
 }
+
+setInterval(function(){
+	document.body.style.setProperty('--hqPropertypx', (document.documentElement.clientWidth/22)+"px")
+	document.body.style.setProperty('--hqPropertypsz', Math.min(40-Math.max((1400-document.documentElement.clientWidth)/22,0),40)+"px")
+},50)
+
 function toggleAuto(toggle) {
 	player[toggle[0]][toggle[1]] = !player[toggle[0]][toggle[1]];
 	needCanvasUpdate=true
